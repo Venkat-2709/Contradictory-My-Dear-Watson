@@ -1,0 +1,64 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% trans 'Contradictory, My Dear Watson - Input Form' %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'Number-Guessing-Game-using-JavaScript-3.webp' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center" id="page-title">{% trans 'Contradictory, My Dear Watson - Input Form' %}</h1>
+
+        <div class="language-selector">
+            <label for="language-selector" id="language">{% trans 'Select Language' %}:</label>
+            <select id="language-selector" onchange="changeLanguage()" class="form-control">
+                <option value="en">{% trans 'English' %}</option>
+                <option value="fr">{% trans 'French' %}</option>
+                <option value="ch">{% trans 'Chinese' %}</option>
+                <option value="bu">{% trans 'Bulgarian' %}</option>
+                <option value="ge">{% trans 'German' %}</option>
+                <option value="ru">{% trans 'Russian' %}</option>
+                <option value="ur">{% trans 'Urdu' %}</option>
+                <option value="hi">{% trans 'Hindi' %}</option>
+                <option value="ar">{% trans 'Arabic' %}</option>
+                <option value="th">{% trans 'Thai' %}</option>
+                <option value="tu">{% trans 'Turkish' %}</option>
+                <option value="sp">{% trans 'Spanish' %}</option>
+                <option value="sw">{% trans 'Swahili' %}</option>
+                <option value="vi">{% trans 'Vietnamese' %}</option>
+                <option value="gr">{% trans 'Greek' %}</option>
+            </select>
+        </div>
+
+        <form method="POST" action="{% url 'predict_similarity' %}">
+            {% csrf_token %}
+            <input type="hidden" name="language" id="selected-language" value="en">
+            <div class="form-group">
+                <label for="premises" id="premises_1">{% trans 'Premises' %}:</label>
+                <input type="text" name="premises" id="premises" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="hypotheses" id="hypotheses_1">{% trans 'Hypotheses' %}:</label>
+                <input type="text" name="hypotheses" id="hypotheses" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submit-button">{% trans 'Submit' %}</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

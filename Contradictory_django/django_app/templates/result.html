@@ -1,0 +1,29 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% trans 'Contradictory, My Dear Watson - Result' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="{% static 'script.js' %}"></script>
+    <style>
+        body {
+            background-image: url("{% static 'Number-Guessing-Game-using-JavaScript-3.webp' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="result-title">{% trans 'Contradictory, My Dear Watson - Result' %}</h1>
+
+    <div class="container">
+        <p><strong id="premises_1">{% trans 'Premises' %}:</strong> {{ premises }}</p>
+        <p><strong id="hypotheses_1">{% trans 'Hypotheses' %}:</strong> {{ hypotheses }}</p>
+        <p><strong id="similarity-label">{% trans 'Similarity' %}:</strong> {{ similarity }}</p>
+
+        <p><a href="{% url 'predict_similarity' %}?language={{ language }}" id="go-back-link">{% trans 'Go Back' %}</a></p>
+    </div>
+</body>
+</html>
